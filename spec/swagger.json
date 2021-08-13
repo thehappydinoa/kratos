@@ -3356,9 +3356,9 @@
         }
       }
     },
-    "submitSelfServiceLoginFlowWithTOTPMethodBody": {
+    "submitSelfServiceLoginFlowWithTotpMethodBody": {
       "type": "object",
-      "title": "submitSelfServiceLoginFlowWithTOTPMethodBody is used to decode the login form payload.",
+      "title": "submitSelfServiceLoginFlowWithTotpMethodBody is used to decode the login form payload.",
       "required": [
         "method",
         "totp_code"
@@ -3538,7 +3538,7 @@
         }
       }
     },
-    "submitSelfServiceSettingsFlowWithTOTPMethodBody": {
+    "submitSelfServiceSettingsFlowWithTotpMethodBody": {
       "type": "object",
       "required": [
         "method"

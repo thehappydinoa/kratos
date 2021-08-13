@@ -2676,6 +2676,11 @@ components:
         password + TOTP) have been used.
 
         To learn more about these levels please head over to: https://www.ory.sh/kratos/docs/concepts/credentials
+      enum:
+      - aal0
+      - aal1
+      - aal2
+      - aal3
       title: Authenticator Assurance Level (AAL)
       type: string
     genericError:
@@ -2763,7 +2768,6 @@ components:
             - identifiers
             - identifiers
             created_at: 2000-01-23T04:56:07.000+00:00
-            type: type
             config: '{}'
         verifiable_addresses:
         - updated_at: 2014-01-01T23:28:56.782Z
@@ -2855,7 +2859,6 @@ components:
         - identifiers
         - identifiers
         created_at: 2000-01-23T04:56:07.000+00:00
-        type: type
         config: '{}'
       properties:
         config:
@@ -2873,10 +2876,7 @@ components:
             type: string
           type: array
         type:
-          description: and so on.
-          title: CredentialsType  represents several different credential types, like
-            password credentials, passwordless credentials,
-          type: string
+          $ref: '#/components/schemas/identityCredentialsType'
         updated_at:
           description: UpdatedAt is a helper struct field for gobuffalo.pop.
           format: date-time
@@ -2884,6 +2884,10 @@ components:
       type: object
     identityCredentialsType:
       description: and so on.
+      enum:
+      - password
+      - totp
+      - oidc
       title: CredentialsType  represents several different credential types, like
         password credentials, passwordless credentials,
       type: string
@@ -3016,8 +3020,6 @@ components:
             type: type
         updated_at: 2000-01-23T04:56:07.000+00:00
         forced: true
-        requested_aal: requested_aal
-        active: active
         created_at: 2000-01-23T04:56:07.000+00:00
         id: id
         type: type
@@ -3025,10 +3027,7 @@ components:
         request_url: request_url
       properties:
         active:
-          description: and so on.
-          title: CredentialsType  represents several different credential types, like
-            password credentials, passwordless credentials,
-          type: string
+          $ref: '#/components/schemas/identityCredentialsType'
         created_at:
           description: CreatedAt is a helper struct field for gobuffalo.pop.
           format: date-time
@@ -3055,16 +3054,7 @@ components:
             to forward information contained in the URL's path or query for example.
           type: string
         requested_aal:
-          description: |-
-            The authenticator assurance level can be one of "aal1", "aal2", or "aal3". A higher number means that it is harder
-            for an attacker to compromise the account.
-
-            Generally, "aal1" implies that one authentication factor was used while AAL2 implies that two factors (e.g.
-            password + TOTP) have been used.
-
-            To learn more about these levels please head over to: https://www.ory.sh/kratos/docs/concepts/credentials
-          title: Authenticator Assurance Level (AAL)
-          type: string
+          $ref: '#/components/schemas/authenticatorAssuranceLevel'
         type:
           description: The flow type can either be `api` or `browser`.
           title: Type is the flow type.
@@ -3279,17 +3269,13 @@ components:
             id: 0
             text: text
             type: type
-        active: active
         id: id
         type: type
         issued_at: 2000-01-23T04:56:07.000+00:00
         request_url: request_url
       properties:
         active:
-          description: and so on.
-          title: CredentialsType  represents several different credential types, like
-            password credentials, passwordless credentials,
-          type: string
+          $ref: '#/components/schemas/identityCredentialsType'
         expires_at:
           description: |-
             ExpiresAt is the time (UTC) when the flow expires. If the user still wishes to log in,
@@ -3397,7 +3383,6 @@ components:
               - identifiers
               - identifiers
               created_at: 2000-01-23T04:56:07.000+00:00
-              type: type
               config: '{}'
           verifiable_addresses:
           - updated_at: 2014-01-01T23:28:56.782Z
@@ -3599,10 +3584,9 @@ components:
         expires_at: 2000-01-23T04:56:07.000+00:00
         authentication_methods:
         - completed_at: 2000-01-23T04:56:07.000+00:00
-          method: method
+          method: link_recovery
         - completed_at: 2000-01-23T04:56:07.000+00:00
-          method: method
-        authenticator_assurance_level: authenticator_assurance_level
+          method: link_recovery
         identity:
           recovery_addresses:
           - updated_at: 2000-01-23T04:56:07.000+00:00
@@ -3624,7 +3608,6 @@ components:
               - identifiers
               - identifiers
               created_at: 2000-01-23T04:56:07.000+00:00
-              type: type
               config: '{}'
           verifiable_addresses:
           - updated_at: 2014-01-01T23:28:56.782Z
@@ -3672,16 +3655,7 @@ components:
           title: List of (Used) AuthenticationMethods
           type: array
         authenticator_assurance_level:
-          description: |-
-            The authenticator assurance level can be one of "aal1", "aal2", or "aal3". A higher number means that it is harder
-            for an attacker to compromise the account.
-
-            Generally, "aal1" implies that one authentication factor was used while AAL2 implies that two factors (e.g.
-            password + TOTP) have been used.
-
-            To learn more about these levels please head over to: https://www.ory.sh/kratos/docs/concepts/credentials
-          title: Authenticator Assurance Level (AAL)
-          type: string
+          $ref: '#/components/schemas/authenticatorAssuranceLevel'
         expires_at:
           description: |-
             The Session Expiry
@@ -3709,16 +3683,19 @@ components:
       description: A singular authenticator used during authentication / login.
       example:
         completed_at: 2000-01-23T04:56:07.000+00:00
-        method: method
+        method: link_recovery
       properties:
         completed_at:
           description: When the authentication challenge was completed.
           format: date-time
           type: string
         method:
-          description: and so on.
-          title: CredentialsType  represents several different credential types, like
-            password credentials, passwordless credentials,
+          enum:
+          - link_recovery
+          - password
+          - totp
+          - oidc
+          title: The method used
           type: string
       title: AuthenticationMethod identifies an authentication method
       type: object
@@ -3761,9 +3738,12 @@ components:
         mapping:
           oidc: '#/components/schemas/submitSelfServiceLoginFlowWithOidcMethodBody'
           password: '#/components/schemas/submitSelfServiceLoginFlowWithPasswordMethodBody'
+          totp: '#/components/schemas/submitSelfServiceLoginFlowWithTotpMethodBody'
         propertyName: method
       oneOf:
       - $ref: '#/components/schemas/submitSelfServiceLoginFlowWithPasswordMethodBody'
+      - $ref: '#/components/schemas/submitSelfServiceLoginFlowWithOidcMethodBody'
+      - $ref: '#/components/schemas/submitSelfServiceLoginFlowWithTotpMethodBody'
     submitSelfServiceLoginFlowWithOidcMethodBody:
       description: |-
         SubmitSelfServiceLoginFlowWithOidcMethodBody is used to decode the login form payload
@@ -3797,6 +3777,7 @@ components:
           enum:
           - password
           - oidc
+          - totp
           type: string
         password:
           description: The user's password.
@@ -3812,7 +3793,7 @@ components:
       title: submitSelfServiceLoginFlowWithPasswordMethodBody is used to decode the
         login form payload.
       type: object
-    submitSelfServiceLoginFlowWithTOTPMethodBody:
+    submitSelfServiceLoginFlowWithTotpMethodBody:
       properties:
         csrf_token:
           description: Sending the anti-csrf token is only required for browser login
@@ -3828,7 +3809,7 @@ components:
       required:
       - method
       - totp_code
-      title: submitSelfServiceLoginFlowWithTOTPMethodBody is used to decode the login
+      title: submitSelfServiceLoginFlowWithTotpMethodBody is used to decode the login
         form payload.
       type: object
     submitSelfServiceLogoutFlowWithoutBrowserBody:
@@ -3938,10 +3919,13 @@ components:
           oidc: '#/components/schemas/submitSelfServiceSettingsFlowWithOidcMethodBody'
           password: '#/components/schemas/submitSelfServiceSettingsFlowWithPasswordMethodBody'
           profile: '#/components/schemas/submitSelfServiceSettingsFlowWithProfileMethodBody'
+          totp: '#/components/schemas/submitSelfServiceSettingsFlowWithTotpMethodBody'
         propertyName: method
       oneOf:
       - $ref: '#/components/schemas/submitSelfServiceSettingsFlowWithPasswordMethodBody'
       - $ref: '#/components/schemas/submitSelfServiceSettingsFlowWithProfileMethodBody'
+      - $ref: '#/components/schemas/submitSelfServiceSettingsFlowWithOidcMethodBody'
+      - $ref: '#/components/schemas/submitSelfServiceSettingsFlowWithTotpMethodBody'
     submitSelfServiceSettingsFlowWithOidcMethodBody:
       description: nolint:deadcode,unused
       properties:
@@ -3992,6 +3976,7 @@ components:
           - password
           - profile
           - oidc
+          - totp
           type: string
         password:
           description: Password is the updated password
@@ -4022,7 +4007,7 @@ components:
       - method
       - traits
       type: object
-    submitSelfServiceSettingsFlowWithTOTPMethodBody:
+    submitSelfServiceSettingsFlowWithTotpMethodBody:
       properties:
         csrf_token:
           description: CSRFToken is the anti-CSRF token
@@ -4086,10 +4071,9 @@ components:
           expires_at: 2000-01-23T04:56:07.000+00:00
           authentication_methods:
           - completed_at: 2000-01-23T04:56:07.000+00:00
-            method: method
+            method: link_recovery
           - completed_at: 2000-01-23T04:56:07.000+00:00
-            method: method
-          authenticator_assurance_level: authenticator_assurance_level
+            method: link_recovery
           identity:
             recovery_addresses:
             - updated_at: 2000-01-23T04:56:07.000+00:00
@@ -4111,7 +4095,6 @@ components:
                 - identifiers
                 - identifiers
                 created_at: 2000-01-23T04:56:07.000+00:00
-                type: type
                 config: '{}'
             verifiable_addresses:
             - updated_at: 2014-01-01T23:28:56.782Z
@@ -4181,7 +4164,6 @@ components:
               - identifiers
               - identifiers
               created_at: 2000-01-23T04:56:07.000+00:00
-              type: type
               config: '{}'
           verifiable_addresses:
           - updated_at: 2014-01-01T23:28:56.782Z
@@ -4209,10 +4191,9 @@ components:
           expires_at: 2000-01-23T04:56:07.000+00:00
           authentication_methods:
           - completed_at: 2000-01-23T04:56:07.000+00:00
-            method: method
+            method: link_recovery
           - completed_at: 2000-01-23T04:56:07.000+00:00
-            method: method
-          authenticator_assurance_level: authenticator_assurance_level
+            method: link_recovery
           identity:
             recovery_addresses:
             - updated_at: 2000-01-23T04:56:07.000+00:00
@@ -4234,7 +4215,6 @@ components:
                 - identifiers
                 - identifiers
                 created_at: 2000-01-23T04:56:07.000+00:00
-                type: type
                 config: '{}'
             verifiable_addresses:
             - updated_at: 2014-01-01T23:28:56.782Z
@@ -4307,7 +4287,6 @@ components:
               - identifiers
               - identifiers
               created_at: 2000-01-23T04:56:07.000+00:00
-              type: type
               config: '{}'
           verifiable_addresses:
           - updated_at: 2014-01-01T23:28:56.782Z
@@ -4401,7 +4380,6 @@ components:
                 - identifiers
                 - identifiers
                 created_at: 2000-01-23T04:56:07.000+00:00
-                type: type
                 config: '{}'
             verifiable_addresses:
             - updated_at: 2014-01-01T23:28:56.782Z
