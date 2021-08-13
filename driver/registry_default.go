@@ -7,6 +7,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/ory/kratos/selfservice/strategy/lookup"
+
 	"github.com/ory/kratos/selfservice/strategy/totp"
 
 	"github.com/luna-duclos/instrumentedsql"
@@ -258,6 +260,7 @@ func (m *RegistryDefault) selfServiceStrategies() []interface{} {
 			profile.NewStrategy(m),
 			link.NewStrategy(m),
 			totp.NewStrategy(m),
+			lookup.NewStrategy(m),
 		}
 	}
 
