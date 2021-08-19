@@ -1354,7 +1354,7 @@
           }
         ],
         "summary": "List Identities",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       },
       "post": {
         "description": "This endpoint creates an identity. It is NOT possible to set an identity's credentials (password, ...)\nusing this method! A way to achieve that will be introduced in the future.\n\nLearn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).",
@@ -1417,7 +1417,7 @@
           }
         ],
         "summary": "Create an Identity",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/identities/{id}": {
@@ -1466,7 +1466,7 @@
           }
         ],
         "summary": "Delete an Identity",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       },
       "get": {
         "description": "Learn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).",
@@ -1520,7 +1520,7 @@
           }
         ],
         "summary": "Get an Identity",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       },
       "put": {
         "description": "This endpoint updates an identity. It is NOT possible to set an identity's credentials (password, ...)\nusing this method! A way to achieve that will be introduced in the future.\n\nThe full identity payload (except credentials) is expected. This endpoint does not support patching.\n\nLearn how identities work in [Ory Kratos' User And Identity Model Documentation](https://www.ory.sh/docs/next/kratos/concepts/identity-user-model).",
@@ -1604,7 +1604,7 @@
           }
         ],
         "summary": "Update an Identity",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/identities/{id}/sessions": {
@@ -1746,7 +1746,7 @@
           }
         },
         "summary": "Create a Recovery Link",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/schemas/{id}": {
@@ -1796,7 +1796,7 @@
             "description": "jsonError"
           }
         },
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/errors": {
@@ -1857,7 +1857,7 @@
           }
         },
         "summary": "Get Self-Service Errors",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/login": {
@@ -1926,7 +1926,7 @@
           }
         },
         "summary": "Submit a Login Flow",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/login/api": {
@@ -1976,7 +1976,7 @@
           }
         },
         "summary": "Initialize Login Flow for APIs, Services, Apps, ...",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/login/browser": {
@@ -2019,7 +2019,7 @@
           }
         },
         "summary": "Initialize Login Flow for Browsers",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/login/flows": {
@@ -2098,7 +2098,7 @@
           }
         },
         "summary": "Get Login Flow",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/logout": {
@@ -2134,7 +2134,7 @@
           }
         },
         "summary": "Complete Self-Service Logout",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/logout/api": {
@@ -2178,7 +2178,7 @@
           }
         },
         "summary": "Perform Logout for APIs, Services, Apps, ...",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/logout/browser": {
@@ -2228,7 +2228,7 @@
           }
         },
         "summary": "Create a Logout URL for Browsers",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/recovery": {
@@ -2305,7 +2305,7 @@
           }
         },
         "summary": "Complete Recovery Flow",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/recovery/api": {
@@ -2345,7 +2345,7 @@
           }
         },
         "summary": "Initialize Recovery Flow for APIs, Services, Apps, ...",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/recovery/browser": {
@@ -2388,7 +2388,7 @@
           }
         },
         "summary": "Initialize Recovery Flow for Browsers",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/recovery/flows": {
@@ -2457,7 +2457,7 @@
           }
         },
         "summary": "Get Recovery Flow",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/registration": {
@@ -2526,7 +2526,7 @@
           }
         },
         "summary": "Submit a Registration Flow",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/registration/api": {
@@ -2566,7 +2566,7 @@
           }
         },
         "summary": "Initialize Registration Flow for APIs, Services, Apps, ...",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/registration/browser": {
@@ -2599,7 +2599,7 @@
           }
         },
         "summary": "Initialize Registration Flow for Browsers",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/registration/flows": {
@@ -2678,7 +2678,7 @@
           }
         },
         "summary": "Get Registration Flow",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/settings": {
@@ -2780,7 +2780,7 @@
           }
         ],
         "summary": "Complete Settings Flow",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/settings/api": {
@@ -2830,7 +2830,7 @@
           }
         },
         "summary": "Initialize Settings Flow for APIs, Services, Apps, ...",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/settings/browser": {
@@ -2883,7 +2883,7 @@
           }
         },
         "summary": "Initialize Settings Flow for Browsers",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/settings/flows": {
@@ -2970,7 +2970,7 @@
           }
         },
         "summary": "Get Settings Flow",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/verification": {
@@ -3047,7 +3047,7 @@
           }
         },
         "summary": "Complete Verification Flow",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/verification/api": {
@@ -3087,7 +3087,7 @@
           }
         },
         "summary": "Initialize Verification Flow for APIs, Services, Apps, ...",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/verification/browser": {
@@ -3120,7 +3120,7 @@
           }
         },
         "summary": "Initialize Verification Flow for Browser Clients",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/self-service/verification/flows": {
@@ -3189,7 +3189,7 @@
           }
         },
         "summary": "Get Verification Flow",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/sessions/whoami": {
@@ -3249,7 +3249,7 @@
           }
         },
         "summary": "Check Who the Current HTTP Session Belongs To",
-        "tags": ["v0alpha1"]
+        "tags": ["v0alpha2"]
       }
     },
     "/version": {
