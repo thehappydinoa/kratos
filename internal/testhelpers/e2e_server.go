@@ -66,7 +66,7 @@ func StartE2EServerOnly(t *testing.T, configFile string, isTLS bool, configOptio
 
 	go func() {
 		t.Log("Starting server...")
-		_ = executor.ExecNoErr(t, "serve", "--config", configFile, "--watch-courier")
+		t.Logf("Command returned: %s", executor.ExecNoErr(t, "serve", "--config", configFile, "--watch-courier"))
 	}()
 
 	return publicPort, adminPort
